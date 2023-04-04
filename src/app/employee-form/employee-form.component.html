@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="example-container">
+    <div class="form-container">
+      <form [formGroup]="empForm" (submit)="submit()">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> First Name </mat-label>
+          <input
+            matInput
+            formControlName="first_name"
+            type="name"
+            placeholder="First Name"
+            required
+          />
+          <mat-error
+            *ngIf="
+              empForm.controls.first_name.touched &&
+              empForm.controls.first_name.invalid
+            "
+          >
+            <span *ngIf="empForm.controls.first_name.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Last Name </mat-label>
+          <input
+            matInput
+            formControlName="last_name"
+            type="name"
+            placeholder="Last Name"
+            required
+          />
+          <mat-error
+            *ngIf="
+              empForm.controls.last_name.touched &&
+              empForm.controls.last_name.invalid
+            "
+          >
+            <span *ngIf="empForm.controls.last_name.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> E-mail </mat-label>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Email"
+            required
+          />
+          <mat-error
+            *ngIf="
+              empForm.controls.email.touched && empForm.controls.email.invalid
+            "
+          >
+            <span *ngIf="empForm.controls.email.errors.required"
+              >This field is mandatory.</span
+            >
+            <span *ngIf="empForm.controls.email.errors.pattern"
+              >This field is invalid.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <div class="row">
+          <button mat-raised-button class="btn" color="primary" type="submit">
+            {{operationType}}
+          </button>
+          <button
+            mat-raised-button
+            class="btn"
+            color="primary"
+            (click)="cancel()"
+          >
+            CANCEL
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

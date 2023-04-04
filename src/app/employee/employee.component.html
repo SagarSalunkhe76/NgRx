@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="main-div">
+    <div class="all-emp">
+      <button
+        mat-button
+        color="primary"
+        class="add-form"
+        style="text-align: center; width: 100%"
+        *ngIf="!formStatus; else AddForm"
+        (click)="addClick(true)"
+      >
+        <mat-icon>note_add</mat-icon>
+        <span class="add">ADD NEW RECORD</span>
+      </button>
+      <ng-template #AddForm>
+        <app-employee-form
+          (cancelForm)="formStatus = false"
+          [editEmp]="editEmp"
+        ></app-employee-form>
+      </ng-template>
+    </div>
+
+    <ng-container class="all-emp">
+      <mat-card
+        *ngFor="let emp of empList$ | async"
+        class="border"
+        style="margin: 10px 0"
+      >
+        <mat-card-content>
+          <mat-card-header>
+            <mat-card-title
+              >{{ emp.last_name }},{{ emp.first_name }}</mat-card-title
+            >
+            <mat-card-subtitle>{{ emp.email }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-button (click)="edit(emp)">EDIT</button>
+            <button mat-button (click)="delete(emp.id)">DELETE</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>
